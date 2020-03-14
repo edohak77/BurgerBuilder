@@ -3,18 +3,30 @@ import React from 'react';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrower.module.css';
+import BackDrop from '../../UI/Backdrop/Backdrop';
+import Aux from '../../../hoc/Aux';
+
 
 const sideDrower = (props) =>{
 
+  let attachedClasses = [classes.SideDrower, classes.Close];
+
+  if(props.open){
+    attachedClasses = [classes.SideDrower, classes.Open];
+  }
+
   return(
-    <div className={classes.SideDrower}>
-      <div className={classes.Logo}>
-        <Logo />
+    <Aux>
+      <BackDrop show={props.open} clicked={props.closed}/>
+      <div className={attachedClasses.join(' ')}>
+        <div className={classes.Logo}>
+          <Logo />
+        </div>
+        <nav>
+          <NavigationItems/>
+        </nav>
       </div>
-      <nav>
-        <NavigationItems/>
-      </nav>
-    </div>
+    </Aux>
   );
 };
 
